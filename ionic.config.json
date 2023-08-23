@@ -1,0 +1,7 @@
+{
+  "name": "cartunsProyect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
