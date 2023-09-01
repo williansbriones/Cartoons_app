@@ -1,25 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-no-border">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">skeleton app</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div class="sub-titulo">aki conezo todo</div> 
-
-  <ion-toolbar>
-    <ion-title size="small">skeleton app</ion-title>
-  </ion-toolbar>
-
-  <ion-input
-  type="email"
-  fill="solid"
-  label="Email"
-  labelPlacement="floating"
-  helperText="Enter a valid email"
-  errorText="Invalid email"
-  ngModel
-  email
-  ></ion-input>
  
+
+  <h1 class="center" size="large">skeleton app</h1>
+
+  <p class="sub-titulo" >aqui comenzó todo</p>
+
+  <ion-list>
+      <h4 class="center">Bienvenido!</h4>
+    
+    <ion-item>
+      <ion-input [(ngModel)]="email" id="email" labelPlacement="floating" label="Email" fill="solid">
+      </ion-input>
+    </ion-item>
+  
+    <ion-item lass="ion-no-border">
+      <ion-input [(ngModel)]="contrasena" id="contraseña" label="Password " type="password" fill="solid" labelPlacement="floating"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="item-center">
+    <ion-button (click)="getconsultas()" fill="outline" color="dark" class="center"> Sing in  </ion-button>
+  </div>
+  <div class="item-center contraseña-incorrecta">
+    <p> correo o contraseña invalida</p>
+  </div> 
 </ion-content>
