@@ -4,3 +4,39 @@
 .margen-derecho-20{
     margin: auto 20px auto auto;
 }
+.icon-mid{
+    width: 50px;
+    height: 50px;
+}
+.barra-contenedora{
+    display: flex;
+    position:sticky;
+        bottom: -260px;
+}
+.derecha-out-session{
+    position: relative;
+    background: var(--ion-toolbar-background, var(--ion-background-color, #fff));
+    float: left;
+    width: 35%;
+    height: 140px;
+    border-radius: 40%;
+    right: -45px;
+    bottom: -45px;
+    border-color: var(--ion-color-step-100);
+}
+.center-espace{
+    width: 30%;
+}
+.izquierda-acount{
+    position: relative;
+    background: var(--ion-toolbar-background, var(--ion-background-color, #fff));
+    float: left;
+    width: 35%;
+    height: 140px;
+    height: 140px;
+    border-radius: 40%;
+    left: -45px;
+    bottom: -45px;
+    border: solid 1px;
+    border-color: var(--ion-color-step-100);
+}
