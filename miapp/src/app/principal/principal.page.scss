@@ -8,35 +8,16 @@
     width: 50px;
     height: 50px;
 }
-.barra-contenedora{
-    display: flex;
-    position:sticky;
-        bottom: -260px;
+.avatar-img{
+    height: 40px;
+    width:40px;
+    margin: auto 10px auto auto;
 }
-.derecha-out-session{
-    position: relative;
-    background: var(--ion-toolbar-background, var(--ion-background-color, #fff));
-    float: left;
-    width: 35%;
-    height: 140px;
-    border-radius: 40%;
-    right: -45px;
-    bottom: -45px;
-    border-color: var(--ion-color-step-100);
+.avatar-img:active{ 
+    width: 45px;
+    height: 45px;
 }
-.center-espace{
-    width: 30%;
-}
-.izquierda-acount{
-    position: relative;
-    background: var(--ion-toolbar-background, var(--ion-background-color, #fff));
-    float: left;
-    width: 35%;
-    height: 140px;
-    height: 140px;
-    border-radius: 40%;
-    left: -45px;
-    bottom: -45px;
-    border: solid 1px;
-    border-color: var(--ion-color-step-100);
+.text-center{
+    margin: 90px auto auto auto;
+    text-align: center;
 }
