@@ -13,7 +13,9 @@ export class HomePage {
   constructor(private navctrl: NavController) {}
 
   
-
+  RestCon(){
+    this.navctrl.navigateRoot("rest-contrasena")
+  }
 
   getconsultas(){
     let errorContraseña = document.getElementsByClassName("contraseña-incorrecta") as HTMLCollectionOf<HTMLElement>;

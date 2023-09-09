@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import { NavController } from '@ionic/angular';
+  
 @Component({
   selector: 'app-rest-contrasena',
   templateUrl: './rest-contrasena.page.html',
@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestContrasenaPage implements OnInit {
 
-  constructor() { }
+  constructor(private navctrl: NavController) { }
+
+  inicioSesion(){
+    this.navctrl.navigateRoot("home")
+  }
 
   ngOnInit() {
   }
