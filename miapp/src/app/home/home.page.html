@@ -22,14 +22,14 @@
     <ion-item lass="ion-no-border">
       <ion-input maxlength="4" inputmode="numeric"[(ngModel)]="contrasena" id="contraseña" label="Password " type="password" fill="solid" labelPlacement="floating"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <p (click)="RestCon()" class="restablecer linea">¿Olvidó su contraseña?</p>
     </ion-item>
   </ion-list>
   <div class="item-center">
     <ion-button (click)="getconsultas()" fill="outline" color="dark" class="center"> Sign in </ion-button>
   </div>
-  <div class="item-center contraseña-incorrecta">
-    <p> correo o contraseña invalida</p>
+  <div class="cont-animate item-center contraseña-incorrecta">
+    <p #MyRef> correo o contraseña invalida</p>
   </div> 
 </ion-content>

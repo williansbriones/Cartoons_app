@@ -1,3 +1,5 @@
+@keyframes text-shadow-drop-center{0%{text-shadow:0 0 0 transparent}100%{text-shadow:0 0 18px rgba(0,0,0,.35)}};
+
 .sub-titulo{
   font-size: small
 }
@@ -37,6 +39,8 @@ ion-button{
 .contraseña-incorrecta{
   text-align: center;
   display: none;
+  color:red;
+  animation:text-shadow-drop-center .6s both;
 }
 .linea{
   text-decoration-line: underline;
