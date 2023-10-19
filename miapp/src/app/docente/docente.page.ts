@@ -2,19 +2,44 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-docente',
   templateUrl: './docente.page.html',
   styleUrls: ['./docente.page.scss'],
 })
 export class DocentePage implements OnInit {
+  
+  myAngularxQrCode: string = "";
+  nombre: string = "Alexander";
+  asignatura: string = "ASY4131"
+  seccion: string = "004-v";
 
   constructor(
     private navctrl: NavController,
     private alertController: AlertController
-  ) { }
+  ) {
+    this.myAngularxQrCode = this.Random(10);
+   }
   
-  nombre: string = "Danilo Maldonado";
+    Random(Largo: number) {
+    let Resultado = '';
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const Caractereslargo = caracteres.length;
+    let contador = 0;
+    while (contador < Largo) {
+      Resultado += caracteres.charAt(Math.floor(Math.random() * Caractereslargo));
+      contador += 1;
+    }
+    return Resultado;
+}
+  
+  
+  isModalOpen = false;
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
 
   async alertCerraSesion() {
     const alert = await this.alertController.create({
@@ -43,15 +68,12 @@ export class DocentePage implements OnInit {
     const { role } = await alert.onDidDismiss();
     
   }
-  
-
   CerrarSesion(){
     this.navctrl.navigateRoot("home")
   }
 
-
-
   ngOnInit() {
+    this.setOpen(true)
   }
 
 }

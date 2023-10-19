@@ -64,11 +64,12 @@ export class HomePage {
       }
     }else if(this.email.includes("@profesor")){
       this.navctrl.navigateRoot("docente")
+    }else{
+      errorContraseña[0].style.display = "block"
+      console.log(this.email);
+      console.log(this.contrasena);
+      this.play()
     }
-    errorContraseña[0].style.display = "block"
-    console.log(this.email);
-    console.log(this.contrasena);
-    this.play()
     return
   }
  

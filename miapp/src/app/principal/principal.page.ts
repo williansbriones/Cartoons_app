@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.page.html',
@@ -9,12 +11,13 @@ import { AlertController } from '@ionic/angular';
 export class PrincipalPage implements OnInit {
 
   constructor(
+    private barcodeScaner: BarcodeScanner,
     private navctrl: NavController,
     private alertController: AlertController
     ) { }
 
   nombre: string = "PepeGrillo";
-
+  codigo: any;
   async alertCerraSesion() {
     const alert = await this.alertController.create({
       header: '¿Seguro que quieres cerrar sesión?',
@@ -43,10 +46,19 @@ export class PrincipalPage implements OnInit {
     
   }
   
-
   CerrarSesion(){
     this.navctrl.navigateRoot("home")
   }
+
+  scan(){
+    this.barcodeScaner.scan().then(barcodeData =>{
+      this.codigo = barcodeData.text;
+      console.log('barcode data:'+ this.codigo);
+    }).catch(err => {
+      console.log('Error: '+ err);
+    })
+  }
+
 
   ngOnInit() {
   }

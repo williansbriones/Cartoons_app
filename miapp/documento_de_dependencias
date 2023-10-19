@@ -1,0 +1,8 @@
+generador de codigo qr
+    npm install angularx-qrcode --save
+    npm install -g qrcode
+
+scanear codigo de qr
+    npm install phonegap-plugin-barcodescanner
+    npm install @ionic-native/barcode-scanner -f
+    ionic cap sync
