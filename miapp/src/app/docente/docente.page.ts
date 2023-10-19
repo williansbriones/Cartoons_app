@@ -73,7 +73,6 @@ export class DocentePage implements OnInit {
   }
 
   ngOnInit() {
-    this.setOpen(true)
   }
 
 }

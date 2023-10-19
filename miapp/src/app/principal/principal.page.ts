@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+//import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 
 @Component({
   selector: 'app-principal',
@@ -11,7 +11,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 export class PrincipalPage implements OnInit {
 
   constructor(
-    private barcodeScaner: BarcodeScanner,
+    //private barcodeScaner: BarcodeScanner,
     private navctrl: NavController,
     private alertController: AlertController
     ) { }
@@ -50,14 +50,14 @@ export class PrincipalPage implements OnInit {
     this.navctrl.navigateRoot("home")
   }
 
-  scan(){
-    this.barcodeScaner.scan().then(barcodeData =>{
-      this.codigo = barcodeData.text;
-      console.log('barcode data:'+ this.codigo);
-    }).catch(err => {
-      console.log('Error: '+ err);
-    })
-  }
+  // scan(){
+  //   this.barcodeScaner.scan().then(barcodeData =>{
+  //     this.codigo = barcodeData.text;
+  //     console.log('barcode data:'+ this.codigo);
+  //   }).catch(err => {
+  //     console.log('Error: '+ err);
+  //   })
+  // }
 
 
   ngOnInit() {
