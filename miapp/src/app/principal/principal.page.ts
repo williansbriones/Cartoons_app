@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-//import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-principal',
@@ -11,7 +11,6 @@ import { AlertController } from '@ionic/angular';
 export class PrincipalPage implements OnInit {
 
   constructor(
-    //private barcodeScaner: BarcodeScanner,
     private navctrl: NavController,
     private alertController: AlertController
     ) { }
@@ -50,15 +49,23 @@ export class PrincipalPage implements OnInit {
     this.navctrl.navigateRoot("home")
   }
 
-  // scan(){
-  //   this.barcodeScaner.scan().then(barcodeData =>{
-  //     this.codigo = barcodeData.text;
-  //     console.log('barcode data:'+ this.codigo);
-  //   }).catch(err => {
-  //     console.log('Error: '+ err);
-  //   })
-  // }
-
+  async startScan() {
+    console.log("HOLA");
+    // Check camera permission
+    // This is just a simple example, check out the better checks below
+    await BarcodeScanner.checkPermission({ force: true });
+  
+    // make background of WebView transparent
+    // note: if you are using ionic this might not be enough, check below
+    BarcodeScanner.hideBackground();
+  
+    const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
+  
+    // if the result has content
+    if (result.hasContent) {
+      console.log(result.content); // log the raw scanned content
+    }
+  };
 
   ngOnInit() {
   }
