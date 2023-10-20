@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner, SupportedFormat  } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-principal',
@@ -16,7 +16,6 @@ export class PrincipalPage implements OnInit {
     ) { }
 
   nombre: string = "PepeGrillo";
-  codigo: any;
   async alertCerraSesion() {
     const alert = await this.alertController.create({
       header: '¿Seguro que quieres cerrar sesión?',
@@ -49,21 +48,45 @@ export class PrincipalPage implements OnInit {
     this.navctrl.navigateRoot("home")
   }
 
+
+ //Funciones par el scaneo de la camara
+ //Mensaje de asistencia
+  async MSGRegistroAsistencia( codigo: string) {
+    const alert = await this.alertController.create({
+      header: 'Registro asistencia',
+      subHeader: 'Asignatura: ASY4131',
+      message: 'Codigo: '+ codigo,
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          
+        },
+      },
+      {
+        text: 'Registrar',
+        role: 'confirm',
+        handler: () => {
+          
+        },
+      }],
+    });
+
+    await alert.present();
+  }
+  //Funcion que abre la camara para scannear
   async startScan() {
-    console.log("HOLA");
-    // Check camera permission
-    // This is just a simple example, check out the better checks below
     await BarcodeScanner.checkPermission({ force: true });
   
-    // make background of WebView transparent
-    // note: if you are using ionic this might not be enough, check below
-    BarcodeScanner.hideBackground();
+    await BarcodeScanner.hideBackground();
+    document.querySelector('body')?.classList.add('barcode-scanner-active');
+
+    const result = await BarcodeScanner.startScan();
   
-    const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
-  
-    // if the result has content
     if (result.hasContent) {
-      console.log(result.content); // log the raw scanned content
+      this.MSGRegistroAsistencia(result.content)
+      BarcodeScanner.showBackground();
+      BarcodeScanner.stopScan();
     }
   };
 
