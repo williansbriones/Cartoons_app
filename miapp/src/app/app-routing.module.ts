@@ -22,10 +22,28 @@ const routes: Routes = [
   {
     path: 'config',
     loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
-  },  {
-    path: 'docente',
-    loadChildren: () => import('./docente/docente.module').then( m => m.DocentePageModule)
   },
+  {
+    path: 'docente',
+    children:[
+      {
+        path:"",
+        loadChildren: () => import('./docente/docente.module').then( m => m.DocentePageModule)
+      },
+      {
+        path: 'docenteclases',
+        loadChildren: () => import('./docenteclases/docenteclases.module').then( m => m.DocenteclasesPageModule)
+      },
+      {
+        path: ':idClass',
+        loadChildren: () => import('./detail-class/detail-class.module').then( m => m.DetailClassPageModule)
+      },
+
+    ]
+  },
+  
+
+
 
 ];
 
