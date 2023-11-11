@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" #borrarElementos>
   <ion-list>
 
     <ion-item (click)="startScan()" button detail>
@@ -36,4 +36,8 @@
       src="../../assets/logo_duoc-01-removebg-preview.png"
     ></ion-img>
   </div>
+  
 </ion-content>
+<ion-fab-button (click)="salirCamara()" #exitboton>
+  <ion-icon name="arrow-back-outline"></ion-icon>
+</ion-fab-button>

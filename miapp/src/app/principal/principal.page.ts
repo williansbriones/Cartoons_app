@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { BarcodeScanner, SupportedFormat  } from '@capacitor-community/barcode-scanner';
@@ -15,6 +15,9 @@ export class PrincipalPage implements OnInit {
     private alertController: AlertController
     ) { }
 
+
+  @ViewChild('exitboton', { read: ElementRef }) exitboton: ElementRef;
+  @ViewChild('borrarElementos', { read: ElementRef }) borrarElementos: ElementRef;
   nombre: string = "PepeGrillo";
   async alertCerraSesion() {
     const alert = await this.alertController.create({
@@ -79,16 +82,26 @@ export class PrincipalPage implements OnInit {
     await BarcodeScanner.checkPermission({ force: true });
   
     await BarcodeScanner.hideBackground();
-    document.querySelector('body')?.classList.add('barcode-scanner-active');
 
+    this.borrarElementos.nativeElement.style.display = "none";
+    this.exitboton.nativeElement.style.display = "block"
+    
     const result = await BarcodeScanner.startScan();
-  
-    if (result.hasContent) {
+    
+    if(result.hasContent) {
       this.MSGRegistroAsistencia(result.content)
       BarcodeScanner.showBackground();
       BarcodeScanner.stopScan();
-    }
+      }
   };
+
+  salirCamara() {
+    this.borrarElementos.nativeElement.style.display = "block";
+    this.exitboton.nativeElement.style.display = "none"
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+  }
+
 
   ngOnInit() {
   }
