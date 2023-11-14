@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./docente.page.scss'],
 })
 export class DocentePage implements OnInit {
-  
+
   myAngularxQrCode: string = "";
   nombre: string = "Alexander";
   asignatura: string = "ASY4131"
@@ -20,26 +20,13 @@ export class DocentePage implements OnInit {
     private navctrl: NavController,
     private alertController: AlertController
   ) {
-    this.myAngularxQrCode = this.Random(10);
-   }
-  
-    Random(Largo: number) {
-    let Resultado = '';
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const Caractereslargo = caracteres.length;
-    let contador = 0;
-    while (contador < Largo) {
-      Resultado += caracteres.charAt(Math.floor(Math.random() * Caractereslargo));
-      contador += 1;
-    }
-    return Resultado;
-}
-  
-  
-  isModalOpen = false;
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
   }
+
+  async VerClases(){
+    this.navctrl.navigateRoot("docente/docenteclases")
+  }
+
+  
 
   async alertCerraSesion() {
     const alert = await this.alertController.create({
@@ -48,9 +35,9 @@ export class DocentePage implements OnInit {
         {
           text: 'Cancelar',
           role: 'cancel',
-          
+
           handler: () => {
-            
+
           },
         },
         {
@@ -66,13 +53,14 @@ export class DocentePage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    
+
   }
-  CerrarSesion(){
+  CerrarSesion() {
     this.navctrl.navigateRoot("home")
   }
 
-  ngOnInit() {
+  ngOnInit(){
+    
   }
 
 }

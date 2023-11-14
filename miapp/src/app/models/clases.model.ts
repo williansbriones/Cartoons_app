@@ -1,4 +1,3 @@
-import * as internal from "stream"
 
 export interface clases {
     id: number,

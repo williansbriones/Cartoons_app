@@ -13,7 +13,7 @@
 <ion-content [fullscreen]="true">
   <ion-list>
 
-    <ion-item (click)="setOpen(true)" button detail>
+    <ion-item (click)="VerClases()" button detail>
       <ion-icon class="margen-derecho-20" aria-hidden="true" name="qr-code-outline" size="large"></ion-icon>
       <ion-label>Registrar asistencia</ion-label>
     </ion-item>
@@ -36,32 +36,5 @@
       src="../../assets/logo_duoc-01-removebg-preview.png"
     ></ion-img>
   </div>
-
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>QR Asistencia</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-          <div class="container-qr">
-          
-          <qrcode class="qr" [qrdata]="myAngularxQrCode" [width]="200" [errorCorrectionLevel]="'H'" [margin]="2" ></qrcode>
-          
-          </div>
-          <h3 class="text-center">Codigo: {{myAngularxQrCode}}</h3>
-          <h3 class="text-center">Asigntura: {{asignatura}}</h3>
-          <h3 class="text-center">sección: {{seccion}}</h3>
-        </ion-content>
-    </ng-template>
-  </ion-modal>
-
-  
-
-
   
 </ion-content>
