@@ -9,7 +9,6 @@ import { clases } from '../models/clases.model';
 })
 export class DocenteclasesPage implements OnInit {
 
-  Clases!: clases[];
 
   constructor(
     private servClases: DocenteService,
@@ -18,9 +17,7 @@ export class DocenteclasesPage implements OnInit {
   
 
   ngOnInit() {
-
-    this.Clases = this.servClases.getallclases();
-
+    
   }
 
 

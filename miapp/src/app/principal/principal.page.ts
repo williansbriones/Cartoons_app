@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { BarcodeScanner, SupportedFormat  } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner  } from '@capacitor-community/barcode-scanner';
+import { UtilsServiceService } from '../service/utils.service.service';
+import { DocenteService } from '../service/docente.service';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-principal',
@@ -10,6 +13,9 @@ import { BarcodeScanner, SupportedFormat  } from '@capacitor-community/barcode-s
 })
 export class PrincipalPage implements OnInit {
 
+  utilserv = inject(UtilsServiceService);
+  docenteserv = inject(DocenteService)
+  loginserv = inject(LoginService);
   constructor(
     private navctrl: NavController,
     private alertController: AlertController
@@ -18,7 +24,8 @@ export class PrincipalPage implements OnInit {
 
   @ViewChild('exitboton', { read: ElementRef }) exitboton: ElementRef;
   @ViewChild('borrarElementos', { read: ElementRef }) borrarElementos: ElementRef;
-  nombre: string = "PepeGrillo";
+  nombre: string = "";
+  fecha: Date = new Date();
   async alertCerraSesion() {
     const alert = await this.alertController.create({
       header: '¿Seguro que quieres cerrar sesión?',
@@ -48,10 +55,8 @@ export class PrincipalPage implements OnInit {
   }
   
   CerrarSesion(){
-    this.navctrl.navigateRoot("home")
+    this.loginserv.singOut();
   }
-
-
  //Funciones par el scaneo de la camara
  //Mensaje de asistencia
   async MSGRegistroAsistencia( codigo: string) {
@@ -102,8 +107,14 @@ export class PrincipalPage implements OnInit {
     BarcodeScanner.stopScan();
   }
 
+  generarclases(){
+    this.docenteserv.setclases()
+  }
 
   ngOnInit() {
+    let datos = this.utilserv.GetLocaStorage('user')
+    this.nombre = datos.nombre
+    console.log(this.fecha.getDay())
   }
 
 }

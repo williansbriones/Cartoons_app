@@ -6,7 +6,8 @@ import { AnimationController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../service/login.service'
 import { User } from '../models/User.model';
-
+import { UtilsServiceService } from '../service/utils.service.service'
+import { IngresoautoService } from '../service/ingresoauto.service';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,8 @@ export class HomePage {
 
 
   @ViewChild('MyRef') element: ElementRef;
-
   private animation: Animation;
+  //==============formulario==============
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -26,19 +27,50 @@ export class HomePage {
 
   constructor(
     private navctrl: NavController,
-    private animationCtrl: AnimationController
-  ) { }
+    private animationCtrl: AnimationController) { }
   fireserv = inject(LoginService);
+  utilserv = inject(UtilsServiceService);
+  Loaduser = inject(IngresoautoService)
 
-  submit(){
-    console.log(this.form.value);
-    this.fireserv.SingIn(this.form.value as User).then(res =>{
-      console.log(res);
+  //==============inicio sesion===========
+  async submit() {
+    if (this.form.valid) {
+
+      const loading = await this.utilserv.loading();
+      await loading.present();
+
+      this.fireserv.SingIn(this.form.value as User).then(async res => {
+        await this.getuser(res.user.uid);
+        const datos = await this.utilserv.GetLocaStorage('user');
+
+        this.fireserv.redireccion(datos as User);
+      }).catch(error => {
+        console.log(error);
+        this.utilserv.presstoast({
+          message: error.message,
+          duration: 2000,
+          color: 'dark',
+          position: 'top',
+          icon: 'alert-circle-outline'
+        });
+      }).finally(() => {
+        loading.dismiss();
+      })
+    }
+  }
+
+  //============ingormacion del usuario==================
+  async getuser(uid: string) {
+    let path = "user/" + uid;
+    await this.fireserv.getdocument(path).then(res => {
+      this.utilserv.SaveLocalStorage('user', res);
     })
+    this.form.reset();
+
   }
 
 
-//============animación==================
+  //============animación==================
   ngAfterViewInit() {
     this.animation = this.animationCtrl
       .create()
@@ -61,8 +93,23 @@ export class HomePage {
   stop() {
     this.animation.stop();
   }
-//==================navegacion==================
+  //==================navegacion==================
   RestCon() {
     this.navctrl.navigateRoot("rest-contrasena")
   }
+
+  //==================Carcar usuarios==================  
+  async cargarusuarios() {
+    const loading = await this.utilserv.loading();
+    await loading.present();
+    this.Loaduser.RegistroUsuario().then(res => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error)
+    }).finally(() => {
+      loading.dismiss();
+    })
+  }
+
 }
+

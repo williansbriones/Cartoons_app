@@ -1,8 +1,12 @@
+import { User } from "firebase/auth"
 
 export interface clases {
-    id: number,
+    id: string,
     asignatura: string
     seccion: string
-    id_profesor: number,
-    profesor: string
+    profesor: any,
+    nombre: string,
+    alumnos: any[],
+    horario: any[]
+
 }

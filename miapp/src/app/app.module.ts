@@ -10,9 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from '@angular/fire/compat' 
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 //import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+
+
 
 @NgModule({
   declarations: [AppComponent],

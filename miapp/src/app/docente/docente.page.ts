@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { UtilsServiceService } from '../service/utils.service.service';
+import { LoginService } from '../service/login.service';
 
 
 
@@ -16,6 +18,8 @@ export class DocentePage implements OnInit {
   asignatura: string = "ASY4131"
   seccion: string = "004-v";
 
+  utilserv = inject(UtilsServiceService);
+  loginserv = inject(LoginService);
   constructor(
     private navctrl: NavController,
     private alertController: AlertController
@@ -56,11 +60,12 @@ export class DocentePage implements OnInit {
 
   }
   CerrarSesion() {
-    this.navctrl.navigateRoot("home")
+    this.loginserv.singOut();
   }
 
   ngOnInit(){
-    
+    let datos = this.utilserv.GetLocaStorage('user')
+    this.nombre = datos.nombre;
   }
 
 }
