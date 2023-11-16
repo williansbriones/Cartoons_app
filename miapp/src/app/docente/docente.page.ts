@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UtilsServiceService } from '../service/utils.service.service';
 import { LoginService } from '../service/login.service';
+import { DocenteService } from '../service/service.ingresos/docente.service';
 
 
 
@@ -21,16 +22,15 @@ export class DocentePage implements OnInit {
   utilserv = inject(UtilsServiceService);
   loginserv = inject(LoginService);
   constructor(
-    private navctrl: NavController,
     private alertController: AlertController
   ) {
   }
 
-  async VerClases(){
-    this.navctrl.navigateRoot("docente/docenteclases")
+  async VerClases() {
+    this.utilserv.routerlink("docente/docenteclases")
   }
 
-  
+
 
   async alertCerraSesion() {
     const alert = await this.alertController.create({
@@ -63,7 +63,9 @@ export class DocentePage implements OnInit {
     this.loginserv.singOut();
   }
 
-  ngOnInit(){
+
+
+  ngOnInit() {
     let datos = this.utilserv.GetLocaStorage('user')
     this.nombre = datos.nombre;
   }

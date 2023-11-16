@@ -5,9 +5,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!--
   <ion-list>
-    <ion-item *ngFor =" let c of Clases " [routerLink] = "['/docente',c.id]">
+    <ion-item *ngFor =" let c of ListaClases "[disabled]="c.estado" [routerLink] = "['/docente',c.uid]">
       <ion-avatar slot="start">
         <img alt="duoc" src="data:image/png;base64,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" />
       </ion-avatar>
@@ -15,11 +14,9 @@
       <div class="box-info">
         <h6>Asignatura: {{c.asignatura}}</h6>
         <h6>Sección: {{c.seccion}}</h6>
-        <h6>profesor: {{c.profesor}}</h6>
+        <h6>Nombre: {{c.nombre}}</h6>
       </div>
-      <h6> ID: {{c.id}}</h6>
       
     </ion-item>
   </ion-list>
-  -->
 </ion-content>

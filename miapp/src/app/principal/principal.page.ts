@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { BarcodeScanner  } from '@capacitor-community/barcode-scanner';
 import { UtilsServiceService } from '../service/utils.service.service';
-import { DocenteService } from '../service/docente.service';
+import { DocenteService } from '../service/service.ingresos/docente.service';
 import { LoginService } from '../service/login.service';
 
 @Component({
@@ -107,10 +107,12 @@ export class PrincipalPage implements OnInit {
     BarcodeScanner.stopScan();
   }
 
-  generarclases(){
+  clases(){
     this.docenteserv.setclases()
   }
-
+  asistencia(){
+    this.docenteserv.setclasesalumnos();
+  }
   ngOnInit() {
     let datos = this.utilserv.GetLocaStorage('user')
     this.nombre = datos.nombre

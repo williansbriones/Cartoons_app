@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../service/login.service'
 import { User } from '../models/User.model';
 import { UtilsServiceService } from '../service/utils.service.service'
-import { IngresoautoService } from '../service/ingresoauto.service';
+import { IngresoautoService } from '../service/service.ingresos/ingresoauto.service';
 
 @Component({
   selector: 'app-home',

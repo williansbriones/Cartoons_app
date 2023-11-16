@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { User } from '../models/User.model';
+import { User } from '../../models/User.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { getFirestore, setDoc, doc } from '@angular/fire/firestore'
 
@@ -15,7 +15,7 @@ firestore = inject(AngularFirestore);
   User: User[] =
     [
       {
-        Uid: '',
+        uid: '',
         nombre: 'Willians Felipe',
         email: 'wi.briones@duocuc.cl',
         password: '123456',
@@ -23,7 +23,7 @@ firestore = inject(AngularFirestore);
         url: ''
       },
       {
-        Uid: '',
+        uid: '',
         nombre: 'Antonio Salazar',
         email: 'a.sallazar@duocuc.cl',
         password: '123456',
@@ -31,7 +31,7 @@ firestore = inject(AngularFirestore);
         url: ''
       },
       {
-        Uid: '',
+        uid: '',
         nombre: 'Martin Gomez',
         email: 'm.gomez@duocuc.cl',
         password: '123456',
@@ -39,7 +39,7 @@ firestore = inject(AngularFirestore);
         url: ''
       },
       {
-        Uid: '',
+        uid: '',
         nombre: 'Jose Pinto',
         email: 'j.pinto@profesor.duoc.cl',
         password: '123456',
@@ -47,7 +47,7 @@ firestore = inject(AngularFirestore);
         url: ''
       },
       {
-        Uid: '',
+        uid: '',
         nombre: 'Saul Cuevas',
         email: 'S.Cuevas@profesor.duoc.cl',
         password: '123456',
