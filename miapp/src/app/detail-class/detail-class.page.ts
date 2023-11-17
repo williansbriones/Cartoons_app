@@ -25,7 +25,7 @@ export class DetailClassPage implements OnInit, OnDestroy {
   clasesServ = inject(ClasesService);
   utilServ = inject(UtilsServiceService);
   user() {
-    return this.utilServ.GetLocaStorage("user");
+    return this.utilServ.GetLocalStorage("user");
   }
 
   back(){

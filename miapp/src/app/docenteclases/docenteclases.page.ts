@@ -18,7 +18,7 @@ export class DocenteclasesPage implements OnInit, OnDestroy {
   Subscription: Subscription;
 
   user() {
-    return this.utilServ.GetLocaStorage("user");
+    return this.utilServ.GetLocalStorage("user");
   }
 
 

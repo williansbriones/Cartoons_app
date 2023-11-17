@@ -162,7 +162,7 @@ export class PrincipalPage implements OnInit, OnDestroy {
     this.docenteserv.setclasesalumnos();
   }
   ngOnInit() {
-    let datos = this.utilserv.GetLocaStorage('user')
+    let datos = this.utilserv.GetLocalStorage('user')
     this.nombre = datos.nombre
     console.log(datos.nombre)
   }

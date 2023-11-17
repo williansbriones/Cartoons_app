@@ -31,7 +31,7 @@ export class UtilsServiceService {
   SaveLocalStorage(key: string, value: any){
     return localStorage.setItem(key, JSON.stringify(value));
   }
-  GetLocaStorage(key: string){
+  GetLocalStorage(key: string){
     return JSON.parse(localStorage.getItem(key));
   }
 }

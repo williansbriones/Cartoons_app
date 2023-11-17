@@ -26,7 +26,7 @@ export class NoAuthGuard implements CanActivate {
           resolve(true)
         } else {
           
-          let datos = this.utilserv.GetLocaStorage('user');
+          let datos = this.utilserv.GetLocalStorage('user');
           this.loginauth.redireccion(datos)
           resolve(false);
         }

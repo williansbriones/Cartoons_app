@@ -30,7 +30,7 @@ export class HomePage {
     private animationCtrl: AnimationController) { }
   fireserv = inject(LoginService);
   utilserv = inject(UtilsServiceService);
-  Loaduser = inject(IngresoautoService)
+  //Loaduser = inject(IngresoautoService) //carga de usuarios automatico
 
   //==============inicio sesion===========
   async submit() {
@@ -41,7 +41,7 @@ export class HomePage {
 
       this.fireserv.SingIn(this.form.value as User).then(async res => {
         await this.getuser(res.user.uid);
-        const datos = await this.utilserv.GetLocaStorage('user');
+        const datos = await this.utilserv.GetLocalStorage('user');
 
         this.fireserv.redireccion(datos as User);
       }).catch(error => {
@@ -99,17 +99,17 @@ export class HomePage {
   }
 
   //==================Carcar usuarios==================  
-  async cargarusuarios() {
-    const loading = await this.utilserv.loading();
-    await loading.present();
-    this.Loaduser.RegistroUsuario().then(res => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error)
-    }).finally(() => {
-      loading.dismiss();
-    })
-  }
+  // async cargarusuarios() {
+  //   const loading = await this.utilserv.loading();
+  //   await loading.present();
+  //   this.Loaduser.RegistroUsuario().then(res => {
+  //     console.log(res);
+  //   }).catch(error => {
+  //     console.log(error)
+  //   }).finally(() => {
+  //     loading.dismiss();
+  //   })
+  // }
 
 }
 

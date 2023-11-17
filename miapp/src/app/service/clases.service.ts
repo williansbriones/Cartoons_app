@@ -62,7 +62,7 @@ export class ClasesService {
       if (horario.dia == nombreDia) {
         if (horainicio <= fechaActual && horatermino >= fechaActual) {
           console.log("hay clases hoy");
-          DateCodClass = fechaActual.getDay() + "-" + fechaActual.getMonth();
+          DateCodClass = fechaActual.getDate() + "-" + fechaActual.getMonth() + "-" + fechaActual.getFullYear();
 
         }
       }
@@ -128,7 +128,7 @@ export class ClasesService {
     let path = `asistencia/${codigoClase}`
     let asis = {} as asistencia;
     let registro_exitoso = false;
-    let Alumnoregister = this.utilserv.GetLocaStorage("user") as User;
+    let Alumnoregister = this.utilserv.GetLocalStorage("user") as User;
     const validarAsist = await this.validarAsistencia(path).then(res => {
       asis = res as asistencia;
       asis.alumnos.forEach(alumno => {

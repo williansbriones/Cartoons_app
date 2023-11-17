@@ -69,8 +69,9 @@ export class DocentePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let datos = this.utilserv.GetLocaStorage('user')
+    let datos = this.utilserv.GetLocalStorage('user')
     this.nombre = datos.nombre;
+    
   }
 
 
