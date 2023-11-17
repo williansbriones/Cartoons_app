@@ -7,6 +7,7 @@ import { asistencia } from '../models/asistencia.model';
 import { clases } from '../models/clases.model';
 import { alumnoAsist } from '../models/alumnoAsist.model';
 import { horario } from '../models/horario.model';
+import { User } from '../models/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -105,8 +106,6 @@ export class ClasesService {
     return (await getDoc(doc(getFirestore(), path))).data()
   }
 
-
-
   async setAsistencia(asistencia: asistencia){
     let path = `asistencia/${asistencia.codigo}`;
     console.log(path);
@@ -124,5 +123,31 @@ export class ClasesService {
     console.log(path)
    return this.firestore.doc(path).valueChanges();
   }
+
+  async registrarAsistencia(codigoClase: string){
+    let path = `asistencia/${codigoClase}`
+    let asis = {} as asistencia;
+    let registro_exitoso = false;
+    let Alumnoregister = this.utilserv.GetLocaStorage("user") as User;
+    const validarAsist = await this.validarAsistencia(path).then(res => {
+      asis = res as asistencia;
+      asis.alumnos.forEach(alumno => {
+        if(alumno.Uid === Alumnoregister.Uid){
+          console.log("si esta");
+          alumno.Estado = true;
+          registro_exitoso = true;
+          return;
+        }
+      });
+      if(registro_exitoso){
+        this.firestore.doc(path).update(asis);
+      return asis;
+      }else{
+        return null;
+      }
+    });
+    return validarAsist;
+  }
+
 
 }

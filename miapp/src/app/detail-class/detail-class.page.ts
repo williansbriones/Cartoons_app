@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClasesService } from '../service/clases.service';
 import { UtilsServiceService } from '../service/utils.service.service';
@@ -11,7 +11,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './detail-class.page.html',
   styleUrls: ['./detail-class.page.scss'],
 })
-export class DetailClassPage implements OnInit {
+export class DetailClassPage implements OnInit, OnDestroy {
+  asistenciaVacia: asistencia
+  claseVacia: clases;
   subscription: Subscription;
   asistencia: asistencia;
   asistencia_active = [];
@@ -26,6 +28,17 @@ export class DetailClassPage implements OnInit {
     return this.utilServ.GetLocaStorage("user");
   }
 
+  back(){
+    this.ngOnDestroy();
+    this.utilServ.routerlink("/docente/docenteclases")
+  }
+
+  ionViewWillEnter(){
+    if(this.asistencia_active === null){
+      this.ngOnInit()
+      console.log("ejecuta")
+    }
+  }
 
 
   async ngOnInit() {
@@ -56,4 +69,14 @@ export class DetailClassPage implements OnInit {
       loading.dismiss();
     })
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.myAngularxQrCode = "";
+    this.asistencia = this.asistenciaVacia;
+    this.asistencia_active = []
+    this.clase = this.claseVacia;
+    this.asignatura = "";
+    this.seccion = "";
+  }
+
 }

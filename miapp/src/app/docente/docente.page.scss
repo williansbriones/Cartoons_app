@@ -17,6 +17,10 @@
     width: 45px;
     height: 45px;
 }
+.text-center{
+    
+    text-align: center;
+}
 .title-margin{
     margin: 90px auto auto auto;
 }
@@ -24,3 +28,9 @@
     display: flex;
     justify-content: center;
 }
+ion-fab-button{
+    left: 30px;
+    top: 70px;
+    position: absolute;
+    display: none;
+  }

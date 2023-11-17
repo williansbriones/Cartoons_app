@@ -1,9 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UtilsServiceService } from '../service/utils.service.service';
 import { LoginService } from '../service/login.service';
-import { DocenteService } from '../service/service.ingresos/docente.service';
 
 
 
@@ -12,7 +10,7 @@ import { DocenteService } from '../service/service.ingresos/docente.service';
   templateUrl: './docente.page.html',
   styleUrls: ['./docente.page.scss'],
 })
-export class DocentePage implements OnInit {
+export class DocentePage implements OnInit, OnDestroy {
 
   myAngularxQrCode: string = "";
   nombre: string = "Alexander";
@@ -60,14 +58,24 @@ export class DocentePage implements OnInit {
 
   }
   CerrarSesion() {
+    this.ngOnDestroy();
     this.loginserv.singOut();
   }
 
-
+  ionViewDidEnter() {
+    if (this.nombre === "") {
+      this.ngOnInit();
+    }
+  }
 
   ngOnInit() {
     let datos = this.utilserv.GetLocaStorage('user')
     this.nombre = datos.nombre;
+  }
+
+
+  ngOnDestroy() {
+    this.nombre = "";
   }
 
 }

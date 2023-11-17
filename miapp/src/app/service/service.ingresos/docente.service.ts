@@ -13,9 +13,9 @@ export class DocenteService {
   public Clases: clases[] =
     [
       {
-        id: '2',
-        asignatura: 'pgt',
-        seccion: '003v',
+        id: '3',
+        asignatura: 'pgh',
+        seccion: '001v',
         profesor:
         {
           Uid: 'fZfJZg1O95NquWsQ1fPb8fIjcRf2',
@@ -43,9 +43,9 @@ export class DocenteService {
           email: 'm.gomez@duocuc.cl',
           tipo: 'estudiante'
         }],
-        horario: [{ dia: 'Lunes', horaInicio: '19:00:00', horaTermino: '19:59:00' },
-        { dia: 'Martes', horaInicio: '8:00:00', horaTermino: '23:59:00' },
-        { dia: 'Jueves', horaInicio: '12:00:00', horaTermino: '23:00:00' }
+        horario: [
+        { dia: 'Viernes', horaInicio: '00:00:00', horaTermino: '23:59:00' },
+        { dia: 'Jueves', horaInicio: '01:00:00', horaTermino: '23:59:00' }
         ]
       }
     ]
@@ -58,19 +58,23 @@ export class DocenteService {
     {
       asignaturas: "pgy",
       seccion: "002v"
-    }
+    },
+    {
+      asignaturas: "pgh",
+      seccion: "001v"
+    },
   ]
 
   setclases() {
     console.log("hola");
     this.Clases.forEach(clase => {
-      let path = "clases/profesor/" + "C95tKuUqEpfqJYkNplm6lxaPZvv1/" + clase.asignatura + clase.seccion;
+      let path = "clases/profesor/" + "fZfJZg1O95NquWsQ1fPb8fIjcRf2/" + clase.asignatura + clase.seccion;
       console.log(path)
       return setDoc(doc(getFirestore(), path), clase);
     });
   }
   setclasesalumnos() {
-    let path = "clases/alumno/Mq0RhInFGYa1oSc4mAKf4RL9Yz52/asignaturas"
+    let path = "clases/alumno/C95tKuUqEpfqJYkNplm6lxaPZvv1/asignaturas"
     console.log(path)
     return setDoc(doc(getFirestore(), path), {...this.asignaturas});
   }
