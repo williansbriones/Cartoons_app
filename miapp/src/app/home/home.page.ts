@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ElementRef, ViewChild } from '@angular/core';
 import type { Animation } from '@ionic/angular';
-import { AnimationController, IonCard, IonCardContent } from '@ionic/angular';
-
+import { AnimationController } from '@ionic/angular';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../service/login.service'
+import { User } from '../models/User.model';
+import { UtilsServiceService } from '../service/utils.service.service'
+import { IngresoautoService } from '../service/service.ingresos/ingresoauto.service';
 
 @Component({
   selector: 'app-home',
@@ -11,66 +15,101 @@ import { AnimationController, IonCard, IonCardContent } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  
+
 
   @ViewChild('MyRef') element: ElementRef;
-
   private animation: Animation;
-  
-  email: string = "";
-  contrasena: string = "";
-  maxval: number = 0;
+  //==============formulario==============
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  })
+
   constructor(
     private navctrl: NavController,
-    private animationCtrl: AnimationController
-    ) {}
+    private animationCtrl: AnimationController) { }
+  fireserv = inject(LoginService);
+  utilserv = inject(UtilsServiceService);
+  //Loaduser = inject(IngresoautoService) //carga de usuarios automatico
 
-    ngAfterViewInit() {
-      this.animation = this.animationCtrl
-        .create()
-        .addElement(this.element.nativeElement)
-        .duration(3000)
-        .keyframes([
-          { offset: 0, opacity: '0.1' },
-          { offset: 0.25, opacity: '0.4' },
-          { offset: 0.5, opacity: '0.6' },
-          { offset: 0.75, opacity: '0.8' },
-          { offset: 1, opacity: '1' },
-        ]);
-    }
+  //==============inicio sesion===========
+  async submit() {
+    if (this.form.valid) {
 
-    play() {
-      this.animation.play();
-    }
-  
-    pause() {
-      this.animation.pause();
-    }
-  
-    stop() {
-      this.animation.stop();
-    }
+      const loading = await this.utilserv.loading();
+      await loading.present();
 
-  RestCon(){
+      this.fireserv.SingIn(this.form.value as User).then(async res => {
+        await this.getuser(res.user.uid);
+        const datos = await this.utilserv.GetLocalStorage('user');
+
+        this.fireserv.redireccion(datos as User);
+      }).catch(error => {
+        console.log(error);
+        this.utilserv.presstoast({
+          message: error.message,
+          duration: 2000,
+          color: 'dark',
+          position: 'top',
+          icon: 'alert-circle-outline'
+        });
+      }).finally(() => {
+        loading.dismiss();
+      })
+    }
+  }
+
+  //============ingormacion del usuario==================
+  async getuser(uid: string) {
+    let path = "user/" + uid;
+    await this.fireserv.getdocument(path).then(res => {
+      this.utilserv.SaveLocalStorage('user', res);
+    })
+    this.form.reset();
+
+  }
+
+
+  //============animación==================
+  ngAfterViewInit() {
+    this.animation = this.animationCtrl
+      .create()
+      .addElement(this.element.nativeElement)
+      .duration(3000)
+      .keyframes([
+        { offset: 0, opacity: '0.1' },
+        { offset: 0.25, opacity: '0.4' },
+        { offset: 0.5, opacity: '0.6' },
+        { offset: 0.75, opacity: '0.8' },
+        { offset: 1, opacity: '1' },
+      ]);
+  }
+  play() {
+    this.animation.play();
+  }
+  pause() {
+    this.animation.pause();
+  }
+  stop() {
+    this.animation.stop();
+  }
+  //==================navegacion==================
+  RestCon() {
     this.navctrl.navigateRoot("rest-contrasena")
   }
 
-  getconsultas(){
-    let errorContraseña = document.getElementsByClassName("contraseña-incorrecta") as HTMLCollectionOf<HTMLElement>;
-    var i = 0;
-    if(this.email.includes("@duocuc")){
-      if(this.contrasena.length==4){
-      this.navctrl.navigateRoot("principal")
-      }
-    }else if(this.email.includes("@profesor")){
-      this.navctrl.navigateRoot("docente")
-    }
-    errorContraseña[0].style.display = "block"
-    console.log(this.email);
-    console.log(this.contrasena);
-    this.play()
-    return
-  }
- 
+  //==================Carcar usuarios==================  
+  // async cargarusuarios() {
+  //   const loading = await this.utilserv.loading();
+  //   await loading.present();
+  //   this.Loaduser.RegistroUsuario().then(res => {
+  //     console.log(res);
+  //   }).catch(error => {
+  //     console.log(error)
+  //   }).finally(() => {
+  //     loading.dismiss();
+  //   })
+  // }
 
 }
+

@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>docente</ion-title>
+    <ion-thumbnail class="icono" slot="start">
+      <img alt="Silhouette of mountains" src="../../assets/logo_duoc-01-removebg-preview.png" />
+    </ion-thumbnail>
+    <ion-title>Docente</ion-title>
+    <ion-avatar class="avatar-img" slot="end">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">docente</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+
+    <ion-item (click)="VerClases()" button detail>
+      <ion-icon class="margen-derecho-20" aria-hidden="true" name="qr-code-outline" size="large"></ion-icon>
+      <ion-label>Registrar asistencia</ion-label>
+    </ion-item>
+    <ion-item button detail>
+      <ion-icon class="margen-derecho-20" aria-hidden="true" name="cog-outline" size="large"></ion-icon>
+      <ion-label>Configuración</ion-label>
+    </ion-item>
+    <ion-item (click)="alertCerraSesion()" button detail>
+      <ion-icon class="margen-derecho-20" aria-hidden="true" name="log-out-outline" size="large"></ion-icon>
+      <ion-label>cerrar sesión</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-text>
+    <h1 class="text-center title-margin"> Bienvenido</h1>
+    <h6 class="text-center">Sistema de asistencia Duoc UC</h6>
+    <h6 class="text-center" >Hola {{nombre}}</h6>
+  </ion-text>
+  <div class="tamaño-img">
+    <ion-img 
+      src="../../assets/logo_duoc-01-removebg-preview.png"
+    ></ion-img>
+  </div>
+  
 </ion-content>

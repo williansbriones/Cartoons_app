@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-thumbnail class="icono" slot="start">
-      <img alt="Silhouette of mountains" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvrk0EbEt_3hZag8Cw0AKIYUyHoHOftcFnBMUt_pmFew&s" />
+      <img alt="Silhouette of mountains" src="../../assets/logo_duoc-01-removebg-preview.png" />
     </ion-thumbnail>
     <ion-title>Registro asistencia</ion-title>
     <ion-avatar class="avatar-img" slot="end">
@@ -10,10 +10,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" #borrarElementos>
   <ion-list>
 
-    <ion-item button detail>
+    <ion-item (click)="startScan()" button detail>
       <ion-icon class="margen-derecho-20" aria-hidden="true" name="calendar-outline" size="large"></ion-icon>
       <ion-label>Registrar asistencia</ion-label>
     </ion-item>
@@ -21,7 +21,7 @@
       <ion-icon class="margen-derecho-20" aria-hidden="true" name="cog-outline" size="large"></ion-icon>
       <ion-label>Configuración</ion-label>
     </ion-item>
-    <ion-item (click)="alertCerraSesion()" button detail>
+    <ion-item (click)="alertCerraSesion()" bqutton detail>
       <ion-icon class="margen-derecho-20" aria-hidden="true" name="log-out-outline" size="large"></ion-icon>
       <ion-label>cerrar sesión</ion-label>
     </ion-item>
@@ -36,4 +36,10 @@
       src="../../assets/logo_duoc-01-removebg-preview.png"
     ></ion-img>
   </div>
+  <ion-button style="display: none;" (click)="clases()" fill="outline" color="dark" >load clases</ion-button>
+  <ion-button style="display: none;" (click)="asistencia()" fill="outline" color="dark" >asignaturas
+  </ion-button>
 </ion-content>
+<ion-fab-button (click)="salirCamara()" #exitboton>
+  <ion-icon name="arrow-back-outline"></ion-icon>
+</ion-fab-button>

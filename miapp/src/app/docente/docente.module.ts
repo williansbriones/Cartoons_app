@@ -8,12 +8,15 @@ import { DocentePageRoutingModule } from './docente-routing.module';
 
 import { DocentePage } from './docente.page';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DocentePageRoutingModule
+    DocentePageRoutingModule,
+    QRCodeModule
   ],
   declarations: [DocentePage]
 })

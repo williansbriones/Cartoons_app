@@ -76,11 +76,29 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-//@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
    */
+  html.scanner-active { // change class name
+
+    background: transparent none !important;
+
+    body, ion-app, .modal-wrapper, .ion-page {
+      background: transparent none !important;
+      --ion-background-color: none; // this is important
+    }
+
+    ion-content {
+      --background: var(--ion-background-color, transparent);
+    }
+
+    app-behindModal { // change node name
+      visibility: hidden;
+    }
+
+  }
 
   body {
     --ion-color-primary: #428cff;
@@ -234,3 +252,4 @@
     --ion-card-background: #1e1e1e;
   }
 
+}
