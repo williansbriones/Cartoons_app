@@ -1,51 +1,120 @@
 @keyframes text-shadow-drop-center{0%{text-shadow:0 0 0 transparent}100%{text-shadow:0 0 18px rgba(0,0,0,.35)}};
 
-.sub-titulo{
-  font-size: small
+$duoc-color-prim: #f1c810;
+$duoc-color-texto: #161414;
+$duoc-color-fondo: rgb(3, 46, 92);
+
+ion-content{
+  background-color: white;
 }
-ion-title{
-  text-align: center;
-  font-size: large;
-}
-h1{
+
+ion-title {
+  text-align: left;
   font-size: xx-large;
-  margin-bottom: 0;
+  color: $duoc-color-prim;
+  margin-bottom: -35px;
 }
-p{
+
+h1 {
+  font-size: xx-large;
+  padding: 5px;
+  text-align: center;
+}
+
+p {
   margin-top: 0;
 }
-h4{
+
+h3{
   margin: 30px auto 15px auto;
 }
-.sub-titulo{text-align: center;}
-ion-toolbar{
-  background: white;
-}
-.center{
+
+.sub-titulo {
   text-align: center;
+  color: $duoc-color-texto;
+  font-size: 20px;
 }
-ion-item{
+
+.center {
+  text-align: center;
+  color: $duoc-color-fondo;
+  background-color: $duoc-color-fondo;
+}
+
+ion-item {
   margin: 0 auto 10px auto;
   width: 300px;
 }
-ion-button{
-  width: 100px
+
+ion-button {
+  width: 100px;
 }
-.item-center{
+
+.item-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.contraseña-incorrecta{
+
+.contraseña-incorrecta {
   text-align: center;
   display: none;
-  color:red;
-  animation:text-shadow-drop-center .6s both;
+  color: red;
+  animation: text-shadow-drop-center 0.6s both;
 }
-.linea{
+
+.linea {
   text-decoration-line: underline;
 }
-.validator{
+
+ion-header{
+  padding: 20px;
+  margin-bottom: -21px;
+}
+
+.ion-no-border{
+    background-color: $duoc-color-fondo;
+}
+
+.lista-Login{
+  background: white;
+  --ion-background-color: aliceblue;
+}
+
+ion-card{
+  border-radius: 15px;
+}
+
+.titulo-lista{
+  margin-top: -15px;
+  color: whitesmoke;
   text-align: center;
-  color:red;
+  background: $duoc-color-fondo;
+  font-size: xx-Large;
+  padding: 20px;
+}
+
+.login-datos{
+  --ion-item-background: transparent;
+  --ion-background-color: rgb(217, 221, 224);
+}
+
+#contraseña{
+  color: $duoc-color-texto;
+}
+
+#email{
+  color: $duoc-color-texto;
+}
+.fondo{
+  --ion-background-color: aliceblue;
+}
+
+.btnsignin{
+  border-radius: 15px;
+}
+
+.restablecer-linea{
+  color: rgb(0, 132, 255);
+  --ion-background-color: transparent;
 }

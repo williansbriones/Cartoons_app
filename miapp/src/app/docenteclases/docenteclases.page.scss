@@ -1,3 +1,7 @@
+$duoc-color-prim: #f1c810;
+$duoc-color-texto: #161414;
+$duoc-color-fondo: rgb(3, 46, 92);
+
 .box-info{
     display: flexbox;
 }
@@ -7,4 +11,24 @@
 h6{
     margin-bottom: 0px;
     margin-top: 4px;
+}
+.titulo-barra{
+    color: $duoc-color-prim;
+}
+
+.contenido{
+    --ion-background-color: aliceblue;
+}
+
+.barra-herramientas{
+    background-color: $duoc-color-fondo;
+}
+
+.text-opcion{
+    color: $duoc-color-texto;
+}
+
+.seleccion-usr{
+    background-color:rgb(231, 231, 231);
+    border-radius: 15px;
 }

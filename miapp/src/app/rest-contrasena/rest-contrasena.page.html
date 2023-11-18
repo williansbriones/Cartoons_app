@@ -1,26 +1,30 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <div class= "ion-no-border">
     <ion-title>Cambiar contraseña</ion-title>
-  </ion-toolbar>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="fondo" [fullscreen]="true">
   <br/>
   <br/>
-  <ion-card>
+  <ion-card class="card-form">
     <h2>Por favor, rellena los datos:</h2>
     <ion-card-header>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="">Usuario</ion-input>
+    <ion-item class= "form-restLogin">
+      <ion-input class= "form-restcontra" labelPlacement="floating" label="Usuario" fill="transparent" value="" id="usuario"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="">Contraseña nueva</ion-input>
+    <ion-item class= "form-restLogin">
+      <ion-input labelPlacement="floating" label="Contraseña" fill="transparent" maxlength="4" inputmode="numeric" class= "form-restcontra" value="" id="contraseña-nueva"> </ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="">Repite tu Contraseña</ion-input>
+    <ion-item class= "form-restLogin">
+      <ion-input class= "form-restcontra" label="Repite tu contraseña" maxlength="4" inputmode="numeric" labelPlacement="floating" value="" id="rep-contraseña"> </ion-input>
     </ion-item>
     </ion-card-header>
-    <ion-button color="dark" class="center" (click)="inicioSesion()">Cambiar contraseña</ion-button>
   </ion-card>
+  <div class="center ">
+    <ion-button color="dark"  fill="outline" class="btn-cambcontra" (click)="inicioSesion()">Cambiar contraseña</ion-button>
+  </div>
 
 </ion-content>
+
+

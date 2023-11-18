@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { UtilsServiceService } from '../service/utils.service.service';
 import { LoginService } from '../service/login.service';
 
@@ -20,6 +20,7 @@ export class DocentePage implements OnInit, OnDestroy {
   utilserv = inject(UtilsServiceService);
   loginserv = inject(LoginService);
   constructor(
+    private navctrl : NavController,
     private alertController: AlertController
   ) {
   }
@@ -43,7 +44,7 @@ export class DocentePage implements OnInit, OnDestroy {
           },
         },
         {
-          text: 'cerrra sesión',
+          text: 'cerrar sesión',
           role: 'confirm',
           handler: () => {
             this.CerrarSesion()
@@ -79,4 +80,7 @@ export class DocentePage implements OnInit, OnDestroy {
     this.nombre = "";
   }
 
+  irConfig(){
+    this.navctrl.navigateRoot("config")
+  }
 }

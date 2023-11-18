@@ -1,0 +1,16 @@
+$duoc-color-prim: #f1c810;
+$duoc-color-texto: #161414;
+$duoc-color-fondo: rgb(3, 46, 92);
+
+
+.titulo-barra{
+    color: $duoc-color-prim;
+}
+
+.contenido{
+    --ion-background-color: aliceblue;
+}
+
+.barra-herramientas{
+    background-color: $duoc-color-fondo;
+}

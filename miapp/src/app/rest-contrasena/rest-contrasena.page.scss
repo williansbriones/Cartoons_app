@@ -1,7 +1,60 @@
-ion-card{
-    padding: 0px;
-    margin: auto;
+$duoc-color-prim: #f1c810;
+$duoc-color-texto: #161414;
+$duoc-color-fondo: rgb(3, 46, 92);
+
+.ion-no-border{
+    background-color: $duoc-color-fondo;
 }
+
 .center{
-    margin: auto auto auto 90px
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+ion-title {
+    text-align: left;
+    font-size: x-large;
+    color: $duoc-color-prim;
+}
+  
+.form-restLogin{
+    border-radius: 15px;
+    background: white;
+    --ion-item-background: transparent;
+    --ion-background-color: rgb(217, 221, 224);
+    border-inline-color: rgb(0, 2, 0);
+}
+
+.form-restcontra{
+    color: $duoc-color-texto;
+}
+
+.fondo{
+    --ion-background-color: aliceblue;
+}
+
+.card-form{
+    background-color: white;
+}
+
+h2{
+    margin-top: -20px;
+    color: whitesmoke;
+    text-align: center;
+    background: $duoc-color-fondo;
+    padding: 45px;
+    font-size: xx-Large;
+}
+
+.btn-cambcontra{
+    text-align: center;
+    background-color: $duoc-color-fondo;
+    border-radius: 15px;
+    --ion-background-color: $duoc-color-fondo;
+}
+
+.card-form{
+    border-radius: 15px;
+  }
+  

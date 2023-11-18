@@ -1,11 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="barra-herramientas">
+  <ion-toolbar color= "rgb(3, 46, 92)">
     <ion-icon (click)="back()" slot="start" aria-hidden="true" name="arrow-back-outline" size="large"></ion-icon>
-    <ion-title>Aistencia qr</ion-title>
+    <ion-title class="titulo-barra">Aistencia qr</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="contenido">
 
   <ion-content class="ion-padding ">
     <div class="container-qr">
@@ -13,9 +13,9 @@
       <qrcode class="qr" [qrdata]="myAngularxQrCode" [width]="200" [errorCorrectionLevel]="'H'" [margin]="2"></qrcode>
 
     </div>
-    <h3 class="text-center">Codigo: {{myAngularxQrCode}}</h3>
-    <h3 class="text-center">Asigntura: {{asignatura}}</h3>
-    <h3 class="text-center">sección: {{seccion}}</h3>
+    <h3 class="text-center text-opcion">Codigo: {{myAngularxQrCode}}</h3>
+    <h3 class="text-center text-opcion">Asigntura: {{asignatura}}</h3>
+    <h3 class="text-center text-opcion">sección: {{seccion}}</h3>
 
     <ion-list>
       <ion-item *ngFor =" let l of asistencia_active">
@@ -24,8 +24,8 @@
         </ion-avatar>
         
         <div class="box-info">
-          <h6>nombre: {{l.nombre}}</h6>
-          <h6>estado: {{l.estadoString}}</h6>
+          <h6 class="text-opcion">nombre: {{l.nombre}}</h6>
+          <h6 class="text-opcion">estado: {{l.estadoString}}</h6>
         </div>
       </ion-item>
     </ion-list>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, inject, OnDestroy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { UtilsServiceService } from '../service/utils.service.service';
 import { DocenteService } from '../service/service.ingresos/docente.service';
@@ -20,6 +20,7 @@ export class PrincipalPage implements OnInit, OnDestroy {
   loginserv = inject(LoginService);
   clasesserv = inject(ClasesService);
   constructor(
+    private navctrl: NavController,
     private alertController: AlertController
   ) { }
 
@@ -41,7 +42,7 @@ export class PrincipalPage implements OnInit, OnDestroy {
           },
         },
         {
-          text: 'cerrra sesión',
+          text: 'cerrar sesión',
           role: 'confirm',
           handler: () => {
             this.CerrarSesion()
@@ -81,7 +82,7 @@ export class PrincipalPage implements OnInit, OnDestroy {
 
   async errorregister() {
     const alert = await this.alertController.create({
-      header: 'Usted no, pertenece a la asignatura',
+      header: 'Usted no pertenece a la asignatura',
       buttons: [
         {
           text: 'Salir',
@@ -171,8 +172,11 @@ export class PrincipalPage implements OnInit, OnDestroy {
     this.ngOnInit();
   }
 
-
   ngOnDestroy(){
     this.nombre = "";
+  }
+
+  irConfig(){
+    this.navctrl.navigateRoot("config")
   }
 }
